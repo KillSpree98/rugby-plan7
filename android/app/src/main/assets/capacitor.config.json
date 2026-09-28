@@ -1,0 +1,17 @@
+{
+	"appId": "com.tanwydd.planpilar",
+	"appName": "Plan Pilar",
+	"webDir": "www",
+	"backgroundColor": "#14161a",
+	"android": {
+		"backgroundColor": "#14161a",
+		"allowMixedContent": false
+	},
+	"plugins": {
+		"SystemBars": {
+			"insetsHandling": "css",
+			"style": "DARK",
+			"initialViewportFitValueHint": "cover"
+		}
+	}
+}

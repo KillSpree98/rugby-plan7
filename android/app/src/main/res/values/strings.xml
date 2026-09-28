@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Plan Pilar</string>
+    <string name="title_activity_main">Plan Pilar</string>
+    <string name="package_name">com.tanwydd.planpilar</string>
+    <string name="custom_url_scheme">com.tanwydd.planpilar</string>
+</resources>
