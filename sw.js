@@ -1,10 +1,11 @@
-const CACHE_NAME = 'plan-pilar-v9';
+const CACHE_NAME = 'plan-pilar-v11';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './css/style.css',
   './js/data.js',
+  './js/guide.js',
   './js/app.js',
   './icons/icon-192.png',
   './icons/icon-512.png',
