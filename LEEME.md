@@ -1,95 +1,110 @@
-# Plan Pilar — versión web/PWA
+# Plan Pilar · fase 2: definición, explosividad y ritmo de juego
 
-> Para generar la **app Android (APK)** lee `LEEME-APK.md`.
+> Para generar la **app Android (APK)** lee `LEEME-APK.md` (sigue igual).
 
-Es una PWA (web app instalable): HTML/CSS/JS puro, sin dependencias externas, con
-todos los datos del plan ya integrados en el código. Funciona 100% offline una vez
-cargada la primera vez. No hay backend, ni login, ni cuentas — todo se guarda en el
-propio móvil (localStorage).
+PWA de HTML/CSS/JS puro, sin dependencias, 100% offline una vez cargada. Todo se guarda en
+el propio móvil (`localStorage`). Esta fase cambia el objetivo: ya no se busca ganar fuerza
+ni masa, sino **bajar grasa, llegar antes (0-10 m), pegar con potencia y repetir esfuerzos
+(RSA) sin caerse**.
 
-## 1. Súbela a un hosting con HTTPS (necesario para "Añadir a pantalla de inicio")
+## 1. Cómo es la semana
 
-Android exige HTTPS para instalar una PWA de verdad (con icono propio y modo
-standalone). La forma más rápida y gratuita:
+El motor de semanas T1-T5 (partidos, semana libre, post-partido...) no ha cambiado: se
+calcula solo desde la pestaña Calendario. Lo que cambia es el contenido.
 
-**Opción A — GitHub Pages**
-1. Crea un repositorio nuevo en GitHub y sube el contenido de esta carpeta tal cual
-   (manteniendo la estructura de subcarpetas `css/`, `js/`, `icons/`).
-2. En el repositorio: *Settings → Pages → Deploy from branch → main → /(root)*.
-3. En 1-2 minutos tendrás una URL tipo `https://tu-usuario.github.io/tu-repo/`.
+**T1 · Desarrollo (sin partido)**
 
-**Opción B — Netlify Drop**
-1. Ve a https://app.netlify.com/drop
-2. Arrastra la carpeta completa (o un ZIP con estos archivos).
-3. Te da una URL HTTPS al instante.
+| Día | Sesión |
+|---|---|
+| Lun | Salidas de 10 m + trineo ligero + CMJ/cajón/salto con barra trampa + fuerza de mantenimiento (3x3) |
+| Mar | Potencia de tren superior (banca explosiva, push press, balón medicinal) + cuello y agarre. Equipo de noche |
+| Mié | **RSA** (12 sprints, bici si molestan las articulaciones) + circuito EMOM de densidad. El día duro |
+| Jue | Zona 2 sin impacto + isométricos de melé y cuello. Equipo de noche |
+| Vie | Full-body de potencia (tirón alto, trap bar) + trineo pesado + melé + HIIT 20/40 |
+| Sáb | Circuito AMRAP "fatiga de partido": rucks, placajes levantándote, bear crawl, burpees, trineo |
+| Dom | Descanso |
 
-Cualquier hosting de archivos estáticos sirve (Vercel, Cloudflare Pages, etc.),
-lo único que necesitas es que se sirva por HTTPS y que se respete la estructura
-de carpetas.
+- **T2 (semana de partido)**: misma lógica con menos volumen; el miércoles es el día duro, el viernes activación y el sábado descanso.
+- **T3 (post-partido)**: lunes MD+1 de recuperación y después la estructura T1.
+- **T4 (semana libre)**: T1 con jueves de Zona 2 larga y domingo libre.
+- **T5 (eliminatoria)**: como T2, con RSA corto el miércoles y solo activación el jueves.
 
-## 2. Instalar en el móvil Android
+Cada sesión incluye **pasos del día (NEAT)** y los ejercicios de RSA/circuito/HIIT llevan un
+botón **⏱** que abre el cronómetro ya configurado.
 
-1. Abre la URL en **Chrome** en el móvil.
-2. Chrome mostrará un aviso "Añadir Plan Pilar a la pantalla de inicio" (o pulsa
-   el menú ⋮ → "Añadir a pantalla de inicio" / "Instalar app").
-3. Confirma. Se crea un icono propio (el escudo con la "P") en tu pantalla de
-   inicio, que abre la app directamente en la pantalla "Hoy", a pantalla completa
-   y sin barra de navegador.
-4. A partir de ahí funciona sin conexión: el service worker (`sw.js`) cachea
-   todos los ficheros la primera vez que se abre.
+La pestaña **Condición** sustituye a la antigua progresión 10K: 8 semanas de RSA, circuito y
+contactos de salto. Avanza solo en semanas T1 y la pauta de la semana actual aparece sola en
+la tarjeta del ejercicio. También recoge tus marcas (mejor 10 m, mejor sprint de RSA, mejor CMJ).
 
-## 3. Notas sobre los datos
+## 2. Nutrición y registro diario de calorías
 
-- Todo el plan (calendario de 33 semanas, rutinas T1/T2/T4/T5, progresión de
-  carrera, mensajes y tips) está escrito directamente en `js/data.js`. Si en
-  algún momento cambia algo del plan (fechas, ejercicios...), se edita ese
-  fichero y ya está — no hace falta rehacer la app.
-- Los únicos datos que el usuario edita desde la propia app son: peso, altura,
-  edad, masa libre de grasa, peso objetivo, factor de actividad y % de déficit
-  (pestaña Nutrición), la semana de progresión de carrera (pestaña 10K), y el
-  registro semanal de seguimiento (pestaña Seguimiento). Todo se guarda en el
-  propio dispositivo.
-- Regla de nutrición por semana: en las semanas **T3** (post-partido) y **T5**
-  (semifinal/final) las calorías suben a mantenimiento (sin déficit). En **T1, T2
-  y T4** se aplica el % de déficit configurado (19% por defecto). Se cambia en
-  `weekIsMaintenance()` dentro de `js/app.js`.
+- **Registro**: añade comidas con calorías y, si quieres, proteína/hidratos/grasa (si solo pones
+  macros, las kcal se calculan 4/4/9). Toca *Rápido* (+100/+250/+500) o *Recientes* para repetir
+  una comida. Puedes editar o borrar cada ingesta y registrar días anteriores con las flechas de fecha.
+- **Barra de progreso** frente al objetivo del día (verde hasta el 100%, ámbar hasta el 105%, roja si te pasas) y barras de macros.
+- **Historial de 14 días**: cumplido (85-103%), por debajo, pasado, racha, kcal media y grasa teórica
+  perdida. Cada día conserva el objetivo con el que se registró aunque cambies después los datos.
+- **Ciclado de carbohidratos**: las kcal se reparten según la carga del día (alta +6%, media, baja −12%,
+  partido +12%; el día antes de un partido cuenta como alto). La proteína (≈2,35 g/kg de masa libre
+  de grasa) y la grasa son fijas y el hidrato absorbe la diferencia, con un suelo de 100 g.
+- **Peso diario**: se guarda, calcula media de 7 días y tendencia, y actualiza solo el peso de Nutrición
+  (BMR/TDEE) y el de Progreso. Se cruza con las calorías registradas para decirte si vas
+  demasiado rápido, en ritmo o estancado.
+- **Avisos**: tope de kcal por debajo de tu BMR, ritmo teórico por encima del 1,2% del peso por semana,
+  e ingestas de más de 6.000 kcal (suele ser un error al teclear).
 
-## 4. Sistema de partidos y calendario (editable desde la app)
+Reglas de semana: **T5** va a mantenimiento (kcal = TDEE estimado) y **T3** mantiene el déficit
+(se puede cambiar en *Datos*). El tope máximo de kcal solo limita las semanas de déficit.
 
-Los partidos (liga y amistosos) ya NO están fijos en el código: viven en `js/data.js`
-solo como **semilla inicial** (`DEFAULT_MATCHES`), y desde la primera vez que abres la
-app se copian a tu almacenamiento local, donde puedes añadir, editar o borrar partidos
-libremente desde la pestaña **Calendario** (toca cualquier día del mes).
+## 3. Cronómetro (botón ⏱ flotante)
 
-Reglas de cómo se calcula el tipo de semana (T1-T5), en este orden de prioridad:
+Tabata, intervalos trabajo/descanso, EMOM, AMRAP (con contador de rondas) y descansos entre series
+(1:00, 1:30, 2:00, 3:00), o uno personalizado. Pitidos y vibración en cada cambio de fase y cuenta
+atrás de 3 s. Se puede cerrar la pantalla del cronómetro y seguir viendo la app: el botón flotante
+muestra el tiempo. Mide siempre contra el reloj, así que no se desfasa si el móvil estrangula los timers.
+Intenta mantener la pantalla encendida; si tu navegador o WebView no lo permite, depende del ajuste
+de apagado de pantalla de tu móvil.
 
-1. Si esa semana la marcaste a mano como "descanso total" → **T4**.
-2. Si hay un partido marcado como eliminatoria (semifinal/final) esa semana → **T5**.
-3. Si hay un partido de **liga** esa semana (el día que sea, aunque se traslade a otro
-   día distinto del domingo) → **T2**.
-4. Si hay un **amistoso en sábado ó domingo** → **T2**. Si el amistoso es entre semana
-   (lunes-viernes) → **T1** (o **T3** si la semana anterior tuvo partido). Ese día **se
-   mantiene la rutina de la mañana** y el partido aparece añadido debajo como bloque
-   "Partido". (Una liga trasladada entre semana, o un amistoso en sábado, sí sustituye
-   el día entero por la tarjeta de partido.)
-5. Si la semana anterior tuvo partido (liga, eliminatoria, o amistoso en sábado/domingo)
-   pero esta semana no hay partido de fin de semana → **T3**: lunes MD+1 de
-   recuperación (tren superior + cardio suave), martes día fuerte (pierna), miércoles
-   cardio/resistencia, jueves día fuerte 2 + Z2, viernes fuerza + primera línea, sábado
-   descanso ligero y domingo descanso (sin partido).
-6. Si nada de lo anterior aplica → **T1**.
+## 4. Temas
 
-Si el motor se equivoca en algún caso raro, cada día tiene también un interruptor
-manual de "semana de descanso total" en su panel de edición, que siempre gana sobre
-el cálculo automático.
+Botón de arriba a la derecha: **Oscuro**, **Alto contraste** (negro puro, blanco puro, bordes gruesos,
+todo un 12% más grande y botones más grandes, pensado para el gimnasio) y **Claro** (exterior).
+Se recuerda entre sesiones.
 
-Al tocar un partido que ya se jugó (fecha pasada), aparece además la sección **"Cómo
-te fue"**: titular o finalizador, minutos jugados, qué hiciste bien y qué mejorar —
-todo guardado junto al partido.
+## 5. Ayuda dentro de la app (sin conexión)
 
-## 5. Registro de series
+- **Botón `?`** (arriba a la derecha): abre la **Guía** con buscador. 17 secciones: empezar, qué hace cada
+  pestaña, tipos de semana T1-T5, por qué este plan, cómo rellenar una tarjeta, **ejercicios A-Z**, cálculo
+  de nutrición (con *tus* números de hoy), registro de calorías, peso y balance, qué comer, cronómetro,
+  condición, progreso, glosario, seguridad, preguntas frecuentes y datos/copias.
+- **Botón `ⓘ` en cada ejercicio**: despliega su ficha (qué es, cómo se hace, errores típicos, alternativa,
+  cuándo parar y cómo se registra). Los 52 movimientos del plan tienen ficha propia.
+- **Botones `ⓘ Ayuda`** en Hoy, Calendario, Nutrición, Condición, Progreso y Cronómetro: te llevan
+  directo a la sección que explica esa pantalla.
+- El selector del cronómetro explica cada modo (intervalos, EMOM, AMRAP, descanso).
+- El buscador funciona por inicio de palabra y sin tildes ("calor" encuentra "calorías").
+- Todo el texto está en `js/guide.js`: si cambias un ejercicio en `data.js`, edita también su ficha ahí
+  (la clave es la misma que usa el historial del ejercicio).
 
-En cada ejercicio de fuerza (peso x reps) hay tres botones: **+ Calentamiento** (fila
-"C", va al principio y no cuenta para PR ni para "mejor marca"), **+ Serie** y
-**− Quitar última** (puede bajar del nº de series prescritas; si la fila tiene datos,
-pide confirmación).
+## 6. Datos y compatibilidad
+
+- Se conservan todos los datos anteriores: series, partidos, seguimiento, nutrición y copias de seguridad.
+- El historial de ejercicios sigue por movimiento (sentadilla trasera, peso muerto rumano, remo Pendlay...).
+- Claves nuevas en `localStorage`: `rp_food_log_v1`, `rp_weight_log_v1`, `rp_cond_progress_v1`, `rp_settings_v1`.
+  La progresión 10K (`rp_run_progress_v1`) ya no se usa. Todo lo nuevo entra en la copia de seguridad.
+- Si ya habías editado tus datos de Nutrición, se respetan: **revisa tope de kcal, % de déficit y edad**
+  (el valor por defecto de edad es 18 y condiciona el BMR).
+
+## 7. Publicar
+
+Sube el contenido tal cual (manteniendo `css/`, `js/`, `icons/`). Se ha subido la versión de caché a
+`plan-pilar-v11` en `sw.js`, así que la PWA instalada se actualiza sola (a veces hace falta abrirla dos veces).
+Para el APK: `npm run sync` (o push a `main` con GitHub Actions). `www/` y `android/app/src/main/assets/public/`
+se regeneran solos.
+
+## 8. Dónde tocar cosas
+
+- Ejercicios, semanas, mensajes, cronómetros predefinidos, factores de carga y protocolo de nutrición: `js/data.js`
+- Textos de la guía, fichas de ejercicios, glosario y preguntas frecuentes: `js/guide.js`
+- Lógica y pantallas: `js/app.js`
+- Colores y temas: variables al principio de `css/style.css`
